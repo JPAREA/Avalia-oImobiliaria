@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Calculadora de Avaliação Imobiliária</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .print {
+            margin: 20px auto;
+            display: block;
+        }
+
+        .delete-button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Avaliação Imobiliária</h1>
+        <h2 style="text-align: center;">Método comparativo direto de dados do mercado</h2>
+        <form id="avaliacaoForm">
+            <div id="imoveis-container">
+                <div class="input-group imovel" data-index="1">
+                    <h2>Imóvel 01</h2>
+                    <label for="linkImovel1">Link do Imóvel:</label>
+                    <input type="url" id="linkImovel1">
+                    
+                    <label for="metragemImovel1">Metragem (m²):</label>
+                    <input type="text" id="metragemImovel1" class="metragem">
+                    
+                    <label for="valorImovel1">Valor (R$):</label>
+                    <input type="text" id="valorImovel1" class="valor">
+                    
+                    <label for="valorM2Imovel1">Valor por M² (R$):</label>
+                    <input type="text" id="valorM2Imovel1" readonly>
+
+                    <!-- Botão de Excluir Imóvel -->
+                    <button type="button" class="delete-button" onclick="excluirImovel(1)">Excluir</button>
+                </div>
+            </div>
+
+            <div class="button-container center">
+                <button type="button" onclick="adicionarImovel()">Adicionar Imóvel</button>
+            </div>
+
+            <div class="input-group">
+                <label for="fatorOferta">Fator de Oferta (%):</label>
+                <input type="text" id="fatorOferta" required>
+            </div>
+
+            <div class="input-group">
+                <label for="metragemAvaliando">Metragem do Imóvel Avaliando (m²):</label>
+                <input type="text" id="metragemAvaliando" required>
+            </div>
+
+            <div class="buttons">
+                <button type="button" class="print center" onclick="imprimirResultado()">Imprimir</button>
+            </div>
+        </form>
+        <div id="resultado"></div>
+    </div>
+    <footer>
+        <img src="https://s01.jetimgs.com/tnnAwYXphKBPiW3sr35S56TSBu59xTuwOiBGvJNNoNMd29yUZL3dr5Is9mHwU6exARdqah8P0l2J2TfnKp_6FFqtTdh1bJ6YBFfo7QEHQ3KTeM0TryQt/logoareamorarouinvestir202301png.webp" alt="ÁREA2 IMÓVEIS LTDA Logo">
+        <p>ÁREA2 IMOVEIS LTDA, Creci: J04175, imobiliária credenciada para venda de imóveis de propriedade da Caixa Econômica Federal.</p>
+        <p>Para MORAR ou INVESTIR, garanta seu imóvel no Paraná com tranquilidade. 📲💬 Fale conosco. WhatsApp [41] 99966.3908 📧 contato@areaimoveis.com.br</p>
+    </footer>
+    <script src="app.js"></script>
+    <script>
+        function excluirImovel(index) {
+            const imovel = document.querySelector(`.imovel[data-index="${index}"]`);
+            imovel.remove();
+            recalcular();
+        }
+    </script>
+</body>
+</html>
